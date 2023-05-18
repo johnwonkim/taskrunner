@@ -45,6 +45,8 @@ func (l *eventLogger) Write(p []byte) (int, error) {
 func Logf(ctx context.Context, f string, args ...interface{}) {
 	logger := LoggerFromContext(ctx)
 	if logger == nil {
+		fmt.Println("🟡 Warning: There was no logger found in context, so falling back to `fmt.Printf`")
+		fmt.Printf(f, args...)
 		return
 	}
 
